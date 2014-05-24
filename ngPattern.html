@@ -20,16 +20,34 @@
 	<body>
 		<div ng-controller="MainCtrl">
 
-		    <form name="userForm"  novalidate>
+		    <form name="aForm"  novalidate>
 		
-		        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.name.$invalid && !aForm.name.$pristine }">
 		        	
-		            <label>Valid pattern: id_123 </label>
-		            <input type="text" name="name" class="form-control" ng-model="user.name" required ng-pattern="/^id_[0-9]+$/">
+		            <label>NAME: example: John Doe, O'Dell, use /^[a-zA-Z''-'\s]{1,40}$/ </label>
+		            <p>
+		            	Validates a name. Allows up to 40 uppercase and lowercase characters 
+		            	and a few special characters that are common to some names. 
+		            </p>
+		            <input type="text" name="name" class="form-control" ng-model="user.name" required ng-pattern="/^[a-zA-Z''-'\s]{1,40}$/">
 		            <!--  show error based on $error.required -->
-		            <p ng-show="userForm.name.$error.required && !userForm.name.$pristine" class="help-block">You name is required.</p>
+		            <p ng-show="aForm.name.$error.required && !aForm.name.$pristine" class="help-block">You name is required.</p>
 		            <!--  show an error based on $error.pattern -->
-		            <p ng-show="userForm.name.$error.pattern && !userForm.name.$pristine" class="help-block">Incorrent input pattern.</p>
+		            <p ng-show="aForm.name.$error.pattern && !aForm.name.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div> 
+		            
+		        <br><br>
+		       	<div class="form-group" ng-class="{ 'has-error' : aForm.ssn.$invalid && !aForm.ssn.$pristine }">	
+		            <label>Social Security Number: example: 111-11-1111, use /^\d{3}-\d{2}-\d{4}$/ </label>
+		            <p>
+		            	Validates the format, type, and length of the supplied input field. The input must consist of 3 numeric characters 
+		            	followed by a dash, then 2 numeric characters followed by a dash, and then 4 numeric characters.
+		            </p>
+		            <input type="text" name="ssn" class="form-control" ng-model="user.ssn" required ng-pattern="/^\d{3}-\d{2}-\d{4}$/">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.ssn.$error.required && !aForm.ssn.$pristine" class="help-block">SSN is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.ssn.$error.pattern && !aForm.ssn.$pristine" class="help-block">Incorrent input pattern.</p>
 		            
 		        </div>
 		        
