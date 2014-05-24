@@ -36,7 +36,7 @@
 		            <p ng-show="aForm.name.$error.pattern && !aForm.name.$pristine" class="help-block">Incorrent input pattern.</p>
 		        </div> 
 		            
-		        <br><br>
+		        <br>
 		       	<div class="form-group" ng-class="{ 'has-error' : aForm.ssn.$invalid && !aForm.ssn.$pristine }">	
 		            <label>Social Security Number: example: 111-11-1111, use /^\d{3}-\d{2}-\d{4}$/ </label>
 		            <p>
@@ -51,7 +51,31 @@
 		            
 		        </div>
 		        
-		        
+		        		
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.phone.$invalid && !aForm.phone.$pristine }">
+		        	
+		            <label>Phone Number: example: (425)555-0123,  1-(425)555-0123, 425-555-0123
+		            	use /^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$/ </label>
+		            <p>
+		            	Validates a U.S. phone number. It must consist of 3 numeric characters, 
+		            	optionally enclosed in parentheses, followed by a set of 3 numeric characters 
+		            	and then a set of 4 numeric characters. 
+		        		<br>
+			            ? - zero or 1 match.
+			            <br>
+			            (...) - group
+			            <br>
+			            | - or
+		                </p>
+		            <input type="text" name="phone" class="form-control" ng-model="user.phone" required 
+		            			ng-pattern="/^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.phone.$error.required && !aForm.phone.$pristine" class="help-block">Phone Number is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.phone.$error.pattern && !aForm.phone.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div> 
+		            
+		        <br><br>
 		    </form>
     
 		</div>
