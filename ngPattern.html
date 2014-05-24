@@ -1,0 +1,41 @@
+<html ng-app="angularexample">
+	<head>
+	    <!-- CSS -->
+	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+	    <style>
+	        body     { padding-top:30px; }
+	    </style>
+    
+		<script src="http://code.angularjs.org/1.2.16/angular.min.js"></script>
+		<script type="text/javascript">
+			var angularExample = angular.module('angularexample', []);
+			angularExample.controller("MainCtrl", [ "$scope",
+			function( $scope) {
+
+			}]);
+
+		</script>
+	</head>
+
+	<body>
+		<div ng-controller="MainCtrl">
+
+		    <form name="userForm"  novalidate>
+		
+		        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+		        	
+		            <label>Valid pattern: id_123 </label>
+		            <input type="text" name="name" class="form-control" ng-model="user.name" required ng-pattern="/^id_[0-9]+$/">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="userForm.name.$error.required && !userForm.name.$pristine" class="help-block">You name is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="userForm.name.$error.pattern && !userForm.name.$pristine" class="help-block">Incorrent input pattern.</p>
+		            
+		        </div>
+		        
+		        
+		    </form>
+    
+		</div>
+	</body>
+</html>
