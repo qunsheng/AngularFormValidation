@@ -18,13 +18,14 @@
 	</head>
 
 	<body>
+	    <div class="page-header"><h1>NG Pattern Examples</h1></div>
 		<div ng-controller="MainCtrl">
 
 		    <form name="aForm"  novalidate>
 		
 		        <div class="form-group" ng-class="{ 'has-error' : aForm.name.$invalid && !aForm.name.$pristine }">
 		        	
-		            <label>NAME: example: John Doe, O'Dell, use /^[a-zA-Z''-'\s]{1,40}$/ </label>
+		            <label>Name: such as John Doe, O'Dell, use /^[a-zA-Z''-'\s]{1,40}$/ </label>
 		            <p>
 		            	Validates a name. Allows up to 40 uppercase and lowercase characters 
 		            	and a few special characters that are common to some names. 
@@ -38,7 +39,7 @@
 		            
 		        <br>
 		       	<div class="form-group" ng-class="{ 'has-error' : aForm.ssn.$invalid && !aForm.ssn.$pristine }">	
-		            <label>Social Security Number: example: 111-11-1111, use /^\d{3}-\d{2}-\d{4}$/ </label>
+		            <label>Social Security Number: such as 111-11-1111, use /^\d{3}-\d{2}-\d{4}$/ </label>
 		            <p>
 		            	Validates the format, type, and length of the supplied input field. The input must consist of 3 numeric characters 
 		            	followed by a dash, then 2 numeric characters followed by a dash, and then 4 numeric characters.
@@ -49,12 +50,13 @@
 		            <!--  show an error based on $error.pattern -->
 		            <p ng-show="aForm.ssn.$error.pattern && !aForm.ssn.$pristine" class="help-block">Incorrent input pattern.</p>
 		            
-		        </div>
+		        </div>        
+		        <br>
 		        
 		        		
 		        <div class="form-group" ng-class="{ 'has-error' : aForm.phone.$invalid && !aForm.phone.$pristine }">
 		        	
-		            <label>Phone Number: example: (425)555-0123,  1-(425)555-0123, 425-555-0123
+		            <label>Phone Number: such as (425)555-0123,  1-(425)555-0123, 425-555-0123,
 		            	use /^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$/ </label>
 		            <p>
 		            	Validates a U.S. phone number. It must consist of 3 numeric characters, 
@@ -73,9 +75,92 @@
 		            <p ng-show="aForm.phone.$error.required && !aForm.phone.$pristine" class="help-block">Phone Number is required.</p>
 		            <!--  show an error based on $error.pattern -->
 		            <p ng-show="aForm.phone.$error.pattern && !aForm.phone.$pristine" class="help-block">Incorrent input pattern.</p>
-		        </div> 
-		            
-		        <br><br>
+		        </div>         
+		        <br>
+		  		        		
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.url.$invalid && !aForm.url.$pristine }">
+		        	
+		            <label>URL: such as http://www.microsoft.com, 
+		            	use /^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/ </label>
+		            <p>
+						Validates a URL 
+		            </p>
+		            <input type="text" name="zip" class="form-control" ng-model="user.url" required 
+		            			ng-pattern="/^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.url.$error.required && !aForm.url.$pristine" class="help-block">URL is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.url.$error.pattern && !aForm.url.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div>         
+		        <br>
+		        		
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.zip.$invalid && !aForm.zip.$pristine }">
+		        	
+		            <label>ZIP Code: such as 12345,
+		            	use /^(\d{5}-\d{4}|\d{5}|\d{9})$|^([a-zA-Z]\d[a-zA-Z] \d[a-zA-Z]\d)$/ </label>
+		            <p>
+						Validates a U.S. ZIP Code. The code must consist of 5 or 9 numeric characters.
+		            </p>
+		            <input type="text" name="zip" class="form-control" ng-model="user.zip" required 
+		            			ng-pattern="/^(\d{5}-\d{4}|\d{5}|\d{9})$|^([a-zA-Z]\d[a-zA-Z] \d[a-zA-Z]\d)$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.zip.$error.required && !aForm.zip.$pristine" class="help-block">ZIP code is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.zip.$error.pattern && !aForm.zip.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div>         
+		        <br>
+		  	
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.passwd.$invalid && !aForm.passwd.$pristine }">
+		        	
+		            <label>Password: 
+		            	use /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/ </label>
+		            <p>
+						Validates a strong password. It must be between 8 and 10 characters, 
+						contain at least one digit and one alphabetic character, 
+						and must not contain special characters.
+		            </p>
+		            <input type="text" name="passwd" class="form-control" ng-model="user.passwd" required 
+		            			ng-pattern="/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.passwd.$error.required && !aForm.passwd.$pristine" class="help-block">Password is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.passwd.$error.pattern && !aForm.passwd.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div>         
+		        <br>
+		        	
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.age.$invalid && !aForm.age.$pristine }">
+		        	
+		            <label>Non- negative integer: such as 0, 50,
+		            	use /^\d+$/ </label>
+		            <p>
+						Validates that the field contains an integer greater than zero.
+		            </p>
+		            <input type="text" name="age" class="form-control" ng-model="user.age" required 
+		            			ng-pattern="/^\d+$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.age.$error.required && !aForm.age.$pristine" class="help-block">Age is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.age.$error.pattern && !aForm.age.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div>         
+		        <br>
+		  		
+		  		
+		        <div class="form-group" ng-class="{ 'has-error' : aForm.amt.$invalid && !aForm.amt.$pristine }">
+		        	
+		            <label>Currency (positive or negative): such as 1.20,
+		            	use /^(-)?\d+(\.\d\d)?$/ </label>
+		            <p>
+						Validates for a positive or negative currency amount. If there is a decimal point, 
+						it requires 2 numeric characters after the decimal point.
+		            </p>
+		            <input type="text" name="age" class="form-control" ng-model="user.age" required 
+		            			ng-pattern="/^(-)?\d+(\.\d\d)?$/ ">
+		            <!--  show error based on $error.required -->
+		            <p ng-show="aForm.amt.$error.required && !aForm.amt.$pristine" class="help-block">Amount is required.</p>
+		            <!--  show an error based on $error.pattern -->
+		            <p ng-show="aForm.amt.$error.pattern && !aForm.amt.$pristine" class="help-block">Incorrent input pattern.</p>
+		        </div>         
+		        <br>
 		    </form>
     
 		</div>
